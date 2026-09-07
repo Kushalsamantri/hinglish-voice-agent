@@ -1,0 +1,2275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Friday!! - Voice-Native Hinglish Shopping & Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&family=Reenie+Beanie&family=Yellowtail&display=swap" rel="stylesheet">
+  <style>
+/* ==========================================================================
+   FRIDAY!! VOICE ASSISTANT - DESIGN SYSTEM & EXACT BLUEPRINT STYLES
+   ========================================================================== */
+
+:root {
+  --bg-dark: #090b12;
+  --bg-card: rgba(18, 22, 36, 0.85);
+  --bg-card-border: rgba(255, 255, 255, 0.08);
+  --bg-card-hover: rgba(26, 31, 50, 0.9);
+  
+  --neon-pink: #ff2a85;
+  --neon-coral: #ff5e62;
+  --neon-orange: #ff9900;
+  --neon-amber: #ffb703;
+  --neon-purple: #9d4edd;
+  --neon-violet: #7928ca;
+  --neon-teal: #00e5ff;
+  --neon-green: #00e676;
+  
+  --text-main: #ffffff;
+  --text-muted: #8e95ab;
+  --text-dim: #5c6278;
+
+  --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-script: 'Yellowtail', 'Kalam', 'Caveat', cursive;
+  --font-hand: 'Caveat', 'Kalam', cursive;
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient Background Neon Glows */
+.ambient-glow {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(90px);
+  opacity: 0.45;
+  transition: all 1s ease;
+}
+
+.glow-top-left {
+  top: -100px;
+  left: -80px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(142, 45, 226, 0.5) 0%, rgba(74, 0, 224, 0) 70%);
+}
+
+.glow-center {
+  top: 35%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(255, 60, 110, 0.28) 0%, rgba(255, 140, 0, 0.16) 45%, rgba(0,0,0,0) 70%);
+}
+
+.glow-bottom-right {
+  bottom: -150px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 130, 40, 0.22) 0%, rgba(120, 40, 200, 0.2) 60%, rgba(0,0,0,0) 75%);
+}
+
+.glow-left-bags {
+  bottom: 120px;
+  left: 60px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(255, 42, 133, 0.25) 0%, rgba(0,0,0,0) 70%);
+}
+
+/* Audio Waveform Canvas flowing across the screen */
+#waveCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.75;
+}
+
+/* App Container Layout */
+.app-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1540px;
+  margin: 0 auto;
+  padding: 16px 28px 24px 28px;
+}
+
+/* Top Navigation */
+.top-nav {
+  display: grid;
+  grid-template-columns: 320px 1fr 340px;
+  align-items: center;
+  padding: 8px 0 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast);
+}
+.icon-btn:hover {
+  transform: scale(1.08);
+}
+
+.brand-cluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Dynamic Equalizer Icon */
+.equalizer-icon {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 24px;
+  width: 22px;
+}
+.eq-bar {
+  width: 3px;
+  background: linear-gradient(to top, #ff2a85, #ffa500);
+  border-radius: 2px;
+  animation: eqBounce 1.2s ease-in-out infinite alternate;
+}
+.bar-1 { height: 12px; animation-delay: 0.1s; }
+.bar-2 { height: 22px; animation-delay: 0.3s; }
+.bar-3 { height: 16px; animation-delay: 0.2s; }
+.bar-4 { height: 24px; animation-delay: 0.5s; }
+.bar-5 { height: 10px; animation-delay: 0.4s; }
+
+@keyframes eqBounce {
+  0% { transform: scaleY(0.4); }
+  100% { transform: scaleY(1.1); }
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-family: var(--font-script);
+  font-size: 27px;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  color: #fff;
+  text-shadow: 0 0 12px rgba(255, 42, 133, 0.6);
+}
+
+.logo-subtitle {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #a0a6bd;
+  margin-top: 2px;
+}
+
+/* Center Navigation Tags */
+.nav-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.tag-made-for {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  color: #a8b0c8;
+}
+
+.tag-real-conversations {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.2px;
+  color: #6d7388;
+}
+
+/* Right Nav Controls */
+.nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.profile-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  color: #b0b7cc;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+.profile-btn:hover {
+  color: #fff;
+}
+.profile-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-label {
+  font-size: 9px;
+  letter-spacing: 0.5px;
+}
+
+/* Status Pill */
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(18, 24, 38, 0.85);
+  border: 1px solid rgba(0, 230, 118, 0.3);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(0, 230, 118, 0.12);
+  transition: all var(--transition-fast);
+}
+.status-pill:hover {
+  border-color: rgba(0, 230, 118, 0.7);
+  box-shadow: 0 0 22px rgba(0, 230, 118, 0.25);
+  transform: translateY(-1px);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--neon-green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--neon-green);
+  animation: dotPulse 1.8s infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.status-text {
+  font-size: 11px;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+.status-latency {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--neon-green);
+  font-variant-numeric: tabular-nums;
+}
+.chevron-icon {
+  color: #718096;
+}
+
+/* Main Content Grid */
+.main-content {
+  display: grid;
+  grid-template-columns: 310px 1fr 390px;
+  gap: 24px;
+  align-items: center;
+  flex: 1;
+  padding: 24px 0 12px 0;
+  position: relative;
+}
+
+/* Hero Left */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 10px 0 10px 10px;
+  position: relative;
+}
+
+.hero-title-brush {
+  font-family: var(--font-script);
+  font-size: 44px;
+  line-height: 1.05;
+  color: #f7f9fc;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 80, 140, 0.35);
+  font-weight: 400;
+}
+.hero-title-brush span {
+  display: block;
+  font-size: 47px;
+  color: #ffffff;
+}
+
+.hero-tagline {
+  margin-top: 18px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #929bb4;
+  line-height: 1.6;
+}
+
+.sparkle-left {
+  font-size: 24px;
+  color: var(--neon-amber);
+  margin-top: 20px;
+  text-shadow: 0 0 12px var(--neon-amber);
+  animation: sparkleTwinkle 2.5s infinite ease-in-out;
+}
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.6; transform: scale(0.9) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.15) rotate(15deg); }
+}
+
+/* 3D Stylized Neon Shopping Bags Scene */
+.shopping-scene {
+  position: relative;
+  width: 220px;
+  height: 190px;
+  margin: 20px 0 10px 0;
+}
+.bags-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.bag {
+  position: absolute;
+  bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+}
+
+.bag-back {
+  left: 20px;
+  width: 130px;
+  height: 150px;
+  background: linear-gradient(145deg, #1f1b2b, #111019);
+  border: 1px solid rgba(255, 42, 133, 0.25);
+  z-index: 1;
+}
+.bag-back .bag-handle {
+  position: absolute;
+  top: -30px;
+  left: 36px;
+  width: 58px;
+  height: 38px;
+  border: 4px solid #2d263f;
+  border-bottom: none;
+  border-radius: 30px 30px 0 0;
+}
+
+.bag-front {
+  left: 65px;
+  width: 125px;
+  height: 135px;
+  background: linear-gradient(135deg, #2b1a29, #140d18);
+  border: 1.5px solid rgba(255, 120, 0, 0.35);
+  z-index: 2;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(255, 60, 110, 0.2);
+}
+.bag-front .bag-handle {
+  position: absolute;
+  top: -26px;
+  left: 34px;
+  width: 54px;
+  height: 34px;
+  border: 4px solid #452136;
+  border-bottom: none;
+  border-radius: 30px 30px 0 0;
+}
+.bag-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+}
+.bag-tag {
+  position: absolute;
+  top: 25px;
+  right: 18px;
+  width: 22px;
+  height: 32px;
+  background: linear-gradient(to bottom, #ff2a85, #ff7b00);
+  border-radius: 3px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.bags-shadow {
+  position: absolute;
+  bottom: 8px;
+  left: 15px;
+  width: 190px;
+  height: 18px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 75%);
+  border-radius: 50%;
+}
+
+/* Center Voice Assistant Hero */
+.hero-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+}
+
+.center-header {
+  margin-bottom: 20px;
+}
+
+.center-brand {
+  font-family: var(--font-script);
+  font-size: 52px;
+  line-height: 1;
+  background: linear-gradient(135deg, #ff3377 20%, #ff8c42 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 18px rgba(255, 60, 110, 0.55));
+}
+.brand-sparkle {
+  font-size: 26px;
+  color: #ffb703;
+  -webkit-text-fill-color: #ffb703;
+}
+
+.center-subtitle {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 3.8px;
+  color: #8c93a8;
+  margin-top: 4px;
+}
+
+/* Voice Stage */
+.voice-stage {
+  position: relative;
+  width: 440px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Floating Speech Bubbles */
+.speech-bubble {
+  position: absolute;
+  padding: 11px 18px;
+  background: rgba(22, 20, 36, 0.85);
+  border: 1px solid rgba(255, 120, 200, 0.22);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 14px rgba(255, 60, 140, 0.12);
+  cursor: pointer;
+  z-index: 10;
+  transition: all var(--transition-fast);
+  animation: bubbleFloat 4s ease-in-out infinite;
+}
+.speech-bubble:hover {
+  transform: scale(1.06) translateY(-4px) !important;
+  border-color: rgba(255, 120, 200, 0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 60, 140, 0.35);
+  background: rgba(35, 28, 55, 0.95);
+}
+
+.bubble-text {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #e4e7f2;
+  white-space: nowrap;
+}
+
+.bubble-top-left { top: 25px; left: 0px; animation-delay: 0s; }
+.bubble-top-right { top: 30px; right: 0px; animation-delay: 1s; }
+.bubble-bottom-left { bottom: 45px; left: 10px; animation-delay: 2s; }
+.bubble-bottom-right { bottom: 40px; right: 10px; animation-delay: 1.5s; }
+
+@keyframes bubbleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Central Glowing Neon Microphone Orb */
+.orb-outer-glow {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 50, 120, 0.35) 0%, rgba(255, 140, 0, 0.18) 50%, transparent 70%);
+  pointer-events: none;
+  filter: blur(20px);
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.orb-radar-wave {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 100, 160, 0.5);
+  pointer-events: none;
+  z-index: 2;
+  animation: radarExpand 3s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+}
+.wave-delay {
+  animation-delay: 1.5s;
+}
+@keyframes radarExpand {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(1.65); opacity: 0; }
+}
+
+.voice-orb-btn {
+  position: relative;
+  width: 174px;
+  height: 174px;
+  border-radius: 50%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  transition: transform var(--transition-smooth);
+}
+.voice-orb-btn:hover {
+  transform: scale(1.04);
+}
+.voice-orb-btn:active {
+  transform: scale(0.96);
+}
+
+.orb-ring-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 5px;
+  background: conic-gradient(from 0deg, #ff2a85, #ff7b00, #ffb703, #9d4edd, #ff2a85);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: spinConic 6s linear infinite;
+  box-shadow: 0 0 35px rgba(255, 42, 133, 0.5), inset 0 0 25px rgba(255, 120, 0, 0.4);
+}
+@keyframes spinConic {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.orb-core {
+  width: 154px;
+  height: 154px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #201a2d 0%, #0d0e17 75%);
+  box-shadow: inset 0 4px 15px rgba(255, 255, 255, 0.1), inset 0 -6px 15px rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+.voice-orb-btn:hover .orb-core {
+  background: radial-gradient(circle at 35% 30%, #291e3b 0%, #121320 75%);
+}
+
+.mic-svg {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 0 10px rgba(255, 140, 60, 0.7));
+  transition: transform var(--transition-fast);
+}
+.voice-orb-btn:hover .mic-svg {
+  transform: scale(1.1);
+}
+
+.voice-orb-btn.listening .orb-ring-border {
+  animation: spinConic 1.8s linear infinite;
+  background: conic-gradient(from 0deg, #00e5ff, #00e676, #ff2a85, #ff7b00, #00e5ff);
+  box-shadow: 0 0 50px rgba(0, 229, 255, 0.7);
+}
+.voice-orb-btn.listening .orb-outer-glow {
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.5) 0%, transparent 70%);
+}
+
+.voice-orb-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+}
+.tap-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  color: #ffffff;
+}
+.sub-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #9aa1b8;
+}
+
+.live-voice-ribbon {
+  margin-top: 14px;
+  padding: 6px 18px;
+  background: rgba(14, 17, 28, 0.7);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 360px;
+  transition: all var(--transition-smooth);
+}
+.ribbon-speaker {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--neon-coral);
+  letter-spacing: 1px;
+}
+.ribbon-text {
+  font-size: 11.5px;
+  color: #cfd5e6;
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Right Action Card */
+.hero-right {
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.action-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  border-radius: var(--radius-lg);
+  padding: 24px 22px;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(120, 50, 180, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+  transition: all var(--transition-smooth);
+}
+.action-card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.action-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: #7b839b;
+}
+
+.active-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pulse-indicator {
+  width: 7px;
+  height: 7px;
+  background-color: var(--neon-green);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--neon-green);
+  animation: dotPulse 1.5s infinite;
+}
+.active-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--neon-green);
+}
+
+.action-subject {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 6px;
+}
+.subject-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: radial-gradient(circle at top left, #341a33, #150f1d);
+  border: 1.5px solid rgba(255, 60, 140, 0.35);
+  box-shadow: 0 0 20px rgba(255, 42, 133, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff5e9c;
+  transition: all var(--transition-smooth);
+}
+.subject-icon-box svg {
+  width: 26px;
+  height: 26px;
+}
+
+.subject-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.subject-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+.subject-id {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #7f889f;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Stepper */
+.timeline-stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 4px 0 6px 4px;
+}
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  position: relative;
+}
+.step-bullet {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.step-completed .step-bullet {
+  background: var(--neon-green);
+  box-shadow: 0 0 12px rgba(0, 230, 118, 0.5);
+}
+.bullet-pulsing {
+  border: 2px solid var(--neon-amber);
+  background: rgba(255, 183, 3, 0.15);
+  position: relative;
+}
+.inner-pulse {
+  width: 8px;
+  height: 8px;
+  background-color: var(--neon-amber);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--neon-amber);
+  animation: pulseDot 1.2s infinite ease-in-out;
+}
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.step-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+.step-detail {
+  font-size: 11px;
+  color: #78819a;
+}
+.text-pulsing {
+  color: var(--neon-amber);
+}
+
+.step-line {
+  width: 2px;
+  height: 24px;
+  margin-left: 10px;
+}
+.line-completed {
+  background: var(--neon-green);
+  box-shadow: 0 0 6px rgba(0, 230, 118, 0.4);
+}
+.line-active {
+  background: linear-gradient(to bottom, var(--neon-green), var(--neon-amber));
+}
+
+/* Agent Dialogue Box (Clean, without Play Button) */
+.agent-dialogue-box {
+  background: rgba(12, 14, 24, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.dialogue-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.agent-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff2a85, #ff7b00);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+.agent-name-meta {
+  display: flex;
+  flex-direction: column;
+}
+.agent-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+.agent-voice-tag {
+  font-size: 9px;
+  color: #8b93ac;
+}
+
+.dialogue-quote {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #d1d6e8;
+  font-style: italic;
+}
+
+.card-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+.progress-bar-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff7b00 0%, #ff2a85 100%);
+  border-radius: 3px;
+  box-shadow: 0 0 12px rgba(255, 42, 133, 0.6);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.progress-status-caption {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  color: #7b839a;
+}
+
+/* Bottom 5 Concept Cards */
+.bottom-concepts-tray {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+  padding-bottom: 12px;
+}
+
+.concept-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(17, 20, 32, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 16px 12px 14px 12px;
+  cursor: pointer;
+  outline: none;
+  backdrop-filter: blur(16px);
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+.concept-card:hover {
+  background: rgba(25, 29, 48, 0.95);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-4px);
+}
+.concept-card.active {
+  background: rgba(28, 26, 44, 0.95);
+  border: 1.5px solid #ff2a85;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 42, 133, 0.35);
+  transform: translateY(-4px);
+}
+.concept-card.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #ff2a85, #ffa500);
+}
+
+.concept-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  transition: transform var(--transition-fast);
+}
+.concept-card:hover .concept-icon-wrap {
+  transform: scale(1.1);
+}
+.concept-icon-wrap svg {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-purple {
+  background: rgba(157, 78, 221, 0.15);
+  border: 1px solid rgba(157, 78, 221, 0.35);
+  color: #c77dff;
+}
+.icon-magenta {
+  background: rgba(255, 42, 133, 0.15);
+  border: 1px solid rgba(255, 42, 133, 0.35);
+  color: #ff70a6;
+}
+.icon-amber {
+  background: rgba(255, 183, 3, 0.15);
+  border: 1px solid rgba(255, 183, 3, 0.35);
+  color: #ffd166;
+}
+.icon-teal {
+  background: rgba(0, 229, 255, 0.15);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: #48cae4;
+}
+.icon-indigo {
+  background: rgba(114, 9, 183, 0.15);
+  border: 1px solid rgba(114, 9, 183, 0.35);
+  color: #b5179e;
+}
+
+.concept-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+.concept-desc {
+  font-size: 10px;
+  color: #7e879f;
+  white-space: nowrap;
+}
+
+/* Bottom Footer */
+.bottom-footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+.footer-center-tags {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2.2px;
+  color: #62697e;
+}
+.separator {
+  opacity: 0.35;
+}
+
+.footer-decor-right {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+}
+.india-gate-doodle {
+  opacity: 0.85;
+  transition: opacity var(--transition-fast);
+}
+.india-gate-doodle:hover {
+  opacity: 1;
+}
+
+.chalkboard-sign {
+  width: 96px;
+  height: 110px;
+  background: #15161c;
+  border: 3px solid #2f2720;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(0,0,0,0.9);
+  user-select: none;
+  padding: 4px;
+}
+.chalkboard-sign p {
+  font-family: var(--font-main);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #cfd3dc;
+  line-height: 1.25;
+}
+.chalk-heart {
+  font-size: 12px;
+  color: #ff5e9c;
+  margin-top: 3px;
+}
+.shopper-script {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-hand);
+  font-size: 18px;
+  line-height: 1.1;
+  color: #ffd8a8;
+  transform: rotate(-4deg);
+}
+
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 6, 12, 0.82);
+  backdrop-filter: blur(16px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-backdrop.open {
+  display: flex;
+  animation: fadeIn 0.25s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-card {
+  background: #111422;
+  border: 1px solid rgba(255, 42, 133, 0.3);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 42, 133, 0.2);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 30px;
+  position: relative;
+}
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 18px;
+}
+.hackathon-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--neon-coral);
+  margin-bottom: 4px;
+}
+.modal-title-cluster h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.modal-sub {
+  font-size: 12px;
+  color: #8c93a8;
+  margin-top: 2px;
+}
+.modal-close-btn {
+  background: none;
+  border: none;
+  color: #a0aec0;
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.modal-close-btn:hover {
+  color: #fff;
+}
+
+.relay-pipeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 24px 0;
+  gap: 8px;
+}
+.pipeline-step {
+  flex: 1;
+  background: rgba(22, 26, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 16px 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.highlighted-step {
+  border: 1.5px solid var(--neon-pink);
+  background: rgba(35, 22, 45, 0.95);
+  box-shadow: 0 0 20px rgba(255, 42, 133, 0.25);
+}
+.pipeline-num {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #79839e;
+}
+.pipeline-step h4 {
+  font-size: 13px;
+  font-weight: 700;
+}
+.model-badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 3px 8px;
+  border-radius: 6px;
+  color: #cbd5e1;
+}
+.model-badge.highlight {
+  background: var(--neon-pink);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 42, 133, 0.5);
+}
+.pipeline-step p {
+  font-size: 10.5px;
+  color: #8c93a8;
+  line-height: 1.35;
+}
+.metric-pill {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--neon-green);
+  background: rgba(0, 230, 118, 0.1);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  margin-top: 4px;
+}
+.pill-gold {
+  color: #ffd166;
+  background: rgba(255, 209, 102, 0.15);
+}
+.pipeline-arrow {
+  color: #4a5568;
+  font-size: 18px;
+}
+
+.hard-problems-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.problem-box {
+  background: rgba(18, 22, 36, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+.prob-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffd8a8;
+  margin-bottom: 4px;
+}
+.problem-box p {
+  font-size: 11px;
+  color: #9aa1b8;
+  line-height: 1.4;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1280px) {
+  .app-container {
+    padding: 14px 18px;
+  }
+  .main-content {
+    grid-template-columns: 260px 1fr 340px;
+    gap: 16px;
+  }
+  .hero-title-brush {
+    font-size: 36px;
+  }
+  .voice-stage {
+    width: 380px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .hero-left, .hero-center, .hero-right {
+    align-items: center;
+    text-align: center;
+  }
+  .hero-right {
+    justify-content: center;
+  }
+  .action-card {
+    max-width: 480px;
+  }
+  .bottom-concepts-tray {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .footer-decor-right {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <!-- Ambient Neon Background Glows -->
+  <div class="ambient-glow glow-top-left"></div>
+  <div class="ambient-glow glow-center"></div>
+  <div class="ambient-glow glow-bottom-right"></div>
+  <div class="ambient-glow glow-left-bags"></div>
+
+  <!-- Audio Waveform Canvas flowing across the hero -->
+  <canvas id="waveCanvas"></canvas>
+
+  <div class="app-container">
+    <!-- TOP NAVIGATION BAR -->
+    <header class="top-nav">
+      <div class="nav-left">
+        <button class="icon-btn menu-btn" aria-label="Menu" id="menuToggle">
+          <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+            <line x1="1" y1="2" x2="21" y2="2" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="1" y1="9" x2="16" y2="9" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="1" y1="16" x2="21" y2="16" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <div class="brand-cluster">
+          <div class="equalizer-icon" id="headerEqualizer">
+            <span class="eq-bar bar-1"></span>
+            <span class="eq-bar bar-2"></span>
+            <span class="eq-bar bar-3"></span>
+            <span class="eq-bar bar-4"></span>
+            <span class="eq-bar bar-5"></span>
+          </div>
+          <div class="brand-text">
+            <h1 class="logo-title">Friday!!</h1>
+            <span class="logo-subtitle">SHOP. SPEAK. DONE.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-center">
+        <span class="tag-made-for">MADE FOR INDIA</span>
+        <span class="tag-real-conversations">REAL CONVERSATIONS. REAL SHOPPING.</span>
+      </div>
+
+      <div class="nav-right">
+        <button class="profile-btn" id="profileBtn" title="User Profile">
+          <div class="profile-avatar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <span class="profile-label">Profile</span>
+        </button>
+
+        <div class="status-pill" id="statusPill" title="Click to inspect Rime Arcana V3 architecture">
+          <span class="status-dot"></span>
+          <span class="status-text">Rime Connected</span>
+          <span class="status-latency" id="latencyDisplay">64 ms</span>
+          <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN INTERACTIVE SECTION -->
+    <main class="main-content">
+      
+      <!-- LEFT HERO AREA -->
+      <section class="hero-left">
+        <div class="hero-text-block">
+          <h2 class="hero-title-brush">
+            Voice assisted<br />
+            <span>Shopping site!</span>
+          </h2>
+          <p class="hero-tagline">JUST SAY IT..<br />WE'LL HANDLE THE REST.</p>
+        </div>
+
+        <div class="sparkle sparkle-left">✦</div>
+
+        <!-- 3D Neon Shopping Bags Scene -->
+        <div class="shopping-scene">
+          <div class="bags-container">
+            <div class="bag bag-back">
+              <div class="bag-handle"></div>
+              <div class="bag-body"></div>
+            </div>
+            <div class="bag bag-front">
+              <div class="bag-handle"></div>
+              <div class="bag-body">
+                <div class="bag-shine"></div>
+                <div class="bag-tag"></div>
+              </div>
+            </div>
+          </div>
+          <div class="bags-shadow"></div>
+        </div>
+      </section>
+
+      <!-- CENTER VOICE INTERACTIVE SPHERE & SPEECH BUBBLES -->
+      <section class="hero-center">
+        <div class="center-header">
+          <h2 class="center-brand">Friday!! <span class="brand-sparkle">✦</span></h2>
+          <p class="center-subtitle">YOUR VOICE ASSISTANT</p>
+        </div>
+
+        <!-- Interactive Voice Orb Stage -->
+        <div class="voice-stage">
+          
+          <!-- Speech Bubble 1: Top Left -->
+          <div class="speech-bubble bubble-top-left" data-concept="track" data-phrase="Mera order kaha hai?">
+            <span class="bubble-text">"Mera order kaha hai?"</span>
+            <div class="bubble-tail tail-br"></div>
+          </div>
+
+          <!-- Speech Bubble 2: Top Right -->
+          <div class="speech-bubble bubble-top-right" data-concept="productivity" data-phrase="Woh wala add to cart">
+            <span class="bubble-text">"Woh wala add to cart"</span>
+            <div class="bubble-tail tail-bl"></div>
+          </div>
+
+          <!-- Speech Bubble 3: Bottom Left -->
+          <div class="speech-bubble bubble-bottom-left" data-concept="travel" data-phrase="Cancel kar do">
+            <span class="bubble-text">"Cancel kar do"</span>
+            <div class="bubble-tail tail-tr"></div>
+          </div>
+
+          <!-- Speech Bubble 4: Bottom Right -->
+          <div class="speech-bubble bubble-bottom-right" data-concept="qa" data-phrase="Mujhe return karna hai">
+            <span class="bubble-text">"Mujhe return karna hai"</span>
+            <div class="bubble-tail tail-tl"></div>
+          </div>
+
+          <!-- Central Glowing Neon Microphone Orb -->
+          <div class="orb-outer-glow" id="orbHalo"></div>
+          <div class="orb-radar-wave" id="radarWave1"></div>
+          <div class="orb-radar-wave wave-delay" id="radarWave2"></div>
+
+          <button class="voice-orb-btn" id="voiceOrbBtn" aria-label="Tap to speak in Hinglish">
+            <div class="orb-ring-border"></div>
+            <div class="orb-core">
+              <svg class="mic-svg" viewBox="0 0 36 36" fill="none">
+                <rect x="13" y="5" width="10" height="17" rx="5" fill="url(#micGrad)" />
+                <path d="M8 17C8 22.5228 12.4772 27 18 27C23.5228 27 28 22.5228 28 17" stroke="url(#micGrad)" stroke-width="2.8" stroke-linecap="round"/>
+                <line x1="18" y1="27" x2="18" y2="33" stroke="url(#micGrad)" stroke-width="2.8" stroke-linecap="round"/>
+                <line x1="13" y1="33" x2="23" y2="33" stroke="url(#micGrad)" stroke-width="2.8" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="micGrad" x1="13" y1="5" x2="25" y2="33" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#FF5C8A" />
+                    <stop offset="0.5" stop-color="#FFAA5B" />
+                    <stop offset="1" stop-color="#FFD166" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </button>
+        </div>
+
+        <div class="voice-orb-label">
+          <span class="tap-label" id="orbStatusLabel">TAP TO SPEAK</span>
+          <span class="sub-label">SHOPPING. IN HINGLISH. NATURALLY.</span>
+        </div>
+
+        <!-- Live Transcribed Voice Floating Ribbon -->
+        <div class="live-voice-ribbon" id="voiceRibbon">
+          <span class="ribbon-speaker">User:</span>
+          <span class="ribbon-text" id="ribbonTranscript">"ORD98765 ka live tracking batao bhai..."</span>
+        </div>
+      </section>
+
+      <!-- RIGHT CURRENT ACTION PANEL -->
+      <section class="hero-right">
+        <div class="action-card" id="actionCard">
+          
+          <div class="action-card-header">
+            <span class="header-tag">CURRENT ACTION</span>
+            <div class="active-badge">
+              <span class="pulse-indicator"></span>
+              <span class="active-label">ACTIVE</span>
+            </div>
+          </div>
+
+          <!-- Main Action Subject -->
+          <div class="action-subject">
+            <div class="subject-icon-box" id="actionIconBox">
+              <svg class="box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <div class="subject-meta">
+              <h3 class="subject-title" id="actionTitle">Checking Order</h3>
+              <span class="subject-id" id="actionId">#98765</span>
+            </div>
+          </div>
+
+          <!-- Stepper Flow -->
+          <div class="timeline-stepper" id="timelineStepper">
+            <!-- Step 1 -->
+            <div class="step-item step-completed" id="step1">
+              <div class="step-bullet">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="step-content">
+                <span class="step-name" id="step1Text">Order found</span>
+                <span class="step-detail" id="step1Detail">Verified in BlueDart Hub</span>
+              </div>
+            </div>
+
+            <div class="step-line line-completed"></div>
+
+            <!-- Step 2 -->
+            <div class="step-item step-completed" id="step2">
+              <div class="step-bullet">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="step-content">
+                <span class="step-name" id="step2Text">Customer verified</span>
+                <span class="step-detail" id="step2Detail">OTP & Voiceprint matched</span>
+              </div>
+            </div>
+
+            <div class="step-line line-active"></div>
+
+            <!-- Step 3 (Active Pulsing Step) -->
+            <div class="step-item step-in-progress" id="step3">
+              <div class="step-bullet bullet-pulsing">
+                <span class="inner-pulse"></span>
+              </div>
+              <div class="step-content">
+                <span class="step-name text-pulsing" id="step3Text">Checking delivery status</span>
+                <span class="step-detail" id="step3Detail">Querying live GPS coordinates</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Hinglish Voice Response Box (Without Play Button) -->
+          <div class="agent-dialogue-box">
+            <div class="dialogue-header">
+              <div class="agent-avatar">
+                <span>R</span>
+              </div>
+              <div class="agent-name-meta">
+                <span class="agent-name">Rime Arcana V3</span>
+                <span class="agent-voice-tag">Voice: Seraphina (Bilingual)</span>
+              </div>
+            </div>
+            <p class="dialogue-quote" id="agentSpeechText">
+              "Samajh gaya! Aapka order abhi out for delivery hai. By 4:30 PM deliver ho jayega. Anything else?"
+            </p>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="card-progress-section">
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill" id="actionProgressBar" style="width: 78%;"></div>
+            </div>
+            <span class="progress-status-caption" id="progressCaption">HANG TIGHT, ALMOST THERE...</span>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- BOTTOM CONCEPT CARDS (5 Interactive Categories) -->
+    <nav class="bottom-concepts-tray" aria-label="Action Concepts">
+      
+      <!-- Concept 1: Track a Package -->
+      <div class="concept-card active" data-concept="track" id="cardTrack" role="button" tabindex="0">
+        <div class="concept-icon-wrap icon-purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <div class="concept-info">
+          <h4 class="concept-title">Track a Package</h4>
+          <span class="concept-desc">Check delivery status</span>
+        </div>
+      </div>
+
+      <!-- Concept 2: Book Travel -->
+      <div class="concept-card" data-concept="travel" id="cardTravel" role="button" tabindex="0">
+        <div class="concept-icon-wrap icon-magenta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="4" y="3" width="16" height="16" rx="2"></rect>
+            <path d="M4 11h16"></path>
+            <path d="M12 3v8"></path>
+            <path d="m8 19-2 3"></path>
+            <path d="m16 19 2 3"></path>
+            <circle cx="8" cy="15" r="1"></circle>
+            <circle cx="16" cy="15" r="1"></circle>
+          </svg>
+        </div>
+        <div class="concept-info">
+          <h4 class="concept-title">Book Travel</h4>
+          <span class="concept-desc">Trains, flights, buses</span>
+        </div>
+      </div>
+
+      <!-- Concept 3: Information & Q&A -->
+      <div class="concept-card" data-concept="qa" id="cardQa" role="button" tabindex="0">
+        <div class="concept-icon-wrap icon-amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <line x1="10" y1="9" x2="8" y2="9"></line>
+          </svg>
+        </div>
+        <div class="concept-info">
+          <h4 class="concept-title">Information & Q&A</h4>
+          <span class="concept-desc">General queries</span>
+        </div>
+      </div>
+
+      <!-- Concept 4: Accessibility -->
+      <div class="concept-card" data-concept="accessibility" id="cardAccessibility" role="button" tabindex="0">
+        <div class="concept-icon-wrap icon-teal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="7" r="4"></circle>
+            <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+          </svg>
+        </div>
+        <div class="concept-info">
+          <h4 class="concept-title">Accessibility</h4>
+          <span class="concept-desc">Hands-free assistance</span>
+        </div>
+      </div>
+
+      <!-- Concept 5: Productivity -->
+      <div class="concept-card" data-concept="productivity" id="cardProductivity" role="button" tabindex="0">
+        <div class="concept-icon-wrap icon-indigo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="8" y1="9" x2="16" y2="9"></line>
+            <line x1="8" y1="13" x2="16" y2="13"></line>
+            <line x1="8" y1="17" x2="13" y2="17"></line>
+          </svg>
+        </div>
+        <div class="concept-info">
+          <h4 class="concept-title">Productivity</h4>
+          <span class="concept-desc">Notes, emails, reminders</span>
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- FOOTER SECTION & ARTWORK -->
+    <footer class="bottom-footer">
+      <div class="footer-center-tags">
+        <span>VOICE FIRST</span>
+        <span class="separator">|</span>
+        <span>MADE FOR REAL PEOPLE</span>
+        <span class="separator">|</span>
+        <span>SHOP FREELY</span>
+      </div>
+
+      <div class="footer-decor-right">
+        <!-- India Gate Outline SVG -->
+        <div class="india-gate-doodle" title="Made for India">
+          <svg width="105" height="60" viewBox="0 0 140 80" fill="none" stroke="rgba(255, 180, 100, 0.45)" stroke-width="1.4">
+            <line x1="10" y1="75" x2="130" y2="75"/>
+            <line x1="15" y1="71" x2="125" y2="71"/>
+            <rect x="25" y="25" width="22" height="46"/>
+            <rect x="93" y="25" width="22" height="46"/>
+            <path d="M47 71 V 42 Q 70 20 93 42 V 71" />
+            <path d="M55 71 V 47 Q 70 32 85 47 V 71" stroke-dasharray="2 2" />
+            <rect x="20" y="16" width="100" height="9"/>
+            <rect x="28" y="10" width="84" height="6"/>
+            <rect x="42" y="4" width="56" height="6"/>
+            <circle cx="70" cy="2" r="2" fill="rgba(255, 180, 100, 0.6)"/>
+          </svg>
+        </div>
+
+        <!-- Chalkboard Sign -->
+        <div class="chalkboard-sign">
+          <p class="chalk-line-1">GOOD</p>
+          <p class="chalk-line-2">THINGS</p>
+          <p class="chalk-line-3">SOUND</p>
+          <p class="chalk-line-4">BETTER</p>
+          <p class="chalk-line-5">TOGETHER</p>
+          <span class="chalk-heart">♡</span>
+        </div>
+
+        <div class="shopper-script">
+          <span>For Every</span>
+          <span>Indian Shopper ♡</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- RIME & LIVEKIT ARCHITECTURE MODAL -->
+  <div class="modal-backdrop" id="archModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-cluster">
+          <div class="hackathon-tag">DATAFORGE × RIME HACKATHON</div>
+          <h3>"Why Every Voice Assistant Sounds Stupid In Hinglish"</h3>
+          <p class="modal-sub">Architecture & Live Telemetry Inspector</p>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="relay-pipeline">
+          <div class="pipeline-step">
+            <div class="pipeline-num">RUNNER 1</div>
+            <h4>The Ears (STT)</h4>
+            <div class="model-badge">Deepgram Nova-3</div>
+            <p>Multilingual speech recognition. Identifies code-switching and tags language tokens on the fly.</p>
+            <div class="metric-pill">WER &lt; 10%</div>
+          </div>
+
+          <div class="pipeline-arrow">➔</div>
+
+          <div class="pipeline-step">
+            <div class="pipeline-num">RUNNER 2</div>
+            <h4>The Brain (LLM)</h4>
+            <div class="model-badge">GPT-4o Stream</div>
+            <p>Understands Hindi-English context without requiring explicit language mode toggle. Low-latency chunking.</p>
+            <div class="metric-pill">Streaming: Active</div>
+          </div>
+
+          <div class="pipeline-arrow">➔</div>
+
+          <div class="pipeline-step highlighted-step">
+            <div class="pipeline-num">RUNNER 3</div>
+            <h4>The Mouth (TTS)</h4>
+            <div class="model-badge highlight">Rime Arcana V3</div>
+            <p><strong>Arcana V3</strong>: Trained on true bilingual speech. Switches Hindi & English mid-sentence without pause or accent break.</p>
+            <div class="metric-pill pill-gold">Voice: Seraphina | 64ms</div>
+          </div>
+
+          <div class="pipeline-arrow">➔</div>
+
+          <div class="pipeline-step">
+            <div class="pipeline-num">RUNNER 4</div>
+            <h4>The Referee</h4>
+            <div class="model-badge">LiveKit Agents</div>
+            <p>Full-duplex audio over WebSockets. Handles instant barge-in interruptions and cancels queued audio under 500ms.</p>
+            <div class="metric-pill">Duplex Latency: 650ms</div>
+          </div>
+        </div>
+
+        <div class="hard-problems-grid">
+          <div class="problem-box">
+            <div class="prob-title">1. Language Debouncing</div>
+            <p>Doesn't flip modes on isolated words like "Okay" or "Theek hai". Waits for 2-3 words in the target language before switching.</p>
+          </div>
+          <div class="problem-box">
+            <div class="prob-title">2. Consistent Voice Identity</div>
+            <p>Using single bilingual voice (Arcana V3) so the assistant maintains personality and warmth without sounding like two stapled robots.</p>
+          </div>
+          <div class="problem-box">
+            <div class="prob-title">3. Sub-800ms Latency</div>
+            <p>Continuous pipeline streaming: STT streams to LLM, LLM streams to Rime WebSocket before full sentence completion.</p>
+          </div>
+          <div class="problem-box">
+            <div class="prob-title">4. Real Interruption Handling</div>
+            <p>User says <em>"Wait, English mein batao"</em> -> LiveKit detects voice instantly, drops current buffer and restarts in English.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+/**
+ * FRIDAY!! - VOICE-NATIVE HINGLISH ASSISTANT
+ * Core Interactive Controller, Waveform Engine, and Concept State Manager
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const CONCEPTS_DATA = {
+    track: {
+      id: 'track',
+      title: 'Checking Order',
+      caseId: '#98765',
+      iconBoxClass: 'icon-purple',
+      iconSvg: `
+        <svg class="box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+      `,
+      step1: { title: 'Order found', detail: 'Verified in BlueDart Hub Delhi' },
+      step2: { title: 'Customer verified', detail: 'OTP & Voiceprint matched (+91 98*** 12345)' },
+      step3: { title: 'Checking delivery status', detail: 'Querying live courier GPS location' },
+      userQuote: 'ORD98765 ka live tracking batao bhai...',
+      agentSpeech: 'Samajh gaya! Aapka order abhi out for delivery hai. By 4:30 PM deliver ho jayega. Anything else?',
+      progress: 78,
+      progressCaption: 'HANG TIGHT, ALMOST THERE...',
+      bubbles: [
+        { text: '"Mera order kaha hai?"', prompt: 'Mera order abhi tak nahi aaya' },
+        { text: '"Delivery boy number do"', prompt: 'Delivery boy ka contact number bata do' },
+        { text: '"Address change karna hai"', prompt: 'Kya main apna delivery address change kar sakta hoon?' },
+        { text: '"Order cancel kar do"', prompt: 'Mera recent order cancel kar do' }
+      ]
+    },
+
+    travel: {
+      id: 'travel',
+      title: 'Booking IRCTC Train',
+      caseId: '#TK-4029',
+      iconBoxClass: 'icon-magenta',
+      iconSvg: `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="4" y="3" width="16" height="16" rx="2"></rect>
+          <path d="M4 11h16"></path>
+          <path d="M12 3v8"></path>
+          <path d="m8 19-2 3"></path>
+          <path d="m16 19 2 3"></path>
+          <circle cx="8" cy="15" r="1"></circle>
+          <circle cx="16" cy="15" r="1"></circle>
+        </svg>
+      `,
+      step1: { title: 'Route locked: NDLS ➔ MMCT', detail: 'Rajdhani Express (12952) departing 16:55' },
+      step2: { title: 'AC 2-Tier Berth confirmed', detail: 'Preference: Lower Berth & veg meals noted' },
+      step3: { title: 'Confirming PNR & Tatkal quota', detail: 'Gateway pinging IRCTC booking servers' },
+      userQuote: 'Bhai, mujhe Delhi se Mumbai ka ticket chahiye, AC 2-tier me...',
+      agentSpeech: 'Ticket allocate ho gaya hai! Rajdhani Express me Coach A1, Berth 34 confirm hai. PNR ABC1234 generate ho gaya.',
+      progress: 68,
+      progressCaption: 'CONNECTING TO RAILWAY SERVERS...',
+      bubbles: [
+        { text: '"Delhi se Mumbai train"', prompt: 'Bhai, mujhe Delhi se Mumbai ka ticket chahiye' },
+        { text: '"AC 2-tier confirm karo"', prompt: 'AC 2-tier berth check karke book kar do' },
+        { text: '"PNR status kya hai?"', prompt: 'Mera PNR ABC1234 ka current status batao' },
+        { text: '"Tatkal quota check karo"', prompt: 'Tatkal quota me seats available hain kya?' }
+      ]
+    },
+
+    qa: {
+      id: 'qa',
+      title: 'Return & Refund Policy',
+      caseId: '#RET-7712',
+      iconBoxClass: 'icon-amber',
+      iconSvg: `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <line x1="10" y1="9" x2="8" y2="9"></line>
+        </svg>
+      `,
+      step1: { title: 'Product identified', detail: 'Noise ColorFit Pulse 5 Smartwatch (Black)' },
+      step2: { title: '7-Day Return window valid', detail: 'Eligible for 100% full refund to UPI' },
+      step3: { title: 'Scheduling doorstep pickup', detail: 'Assigning nearest Ekart logistics partner' },
+      userQuote: 'Yeh watch return ho sakti hai kya? Fit nahi baith raha...',
+      agentSpeech: 'Haanji bilkul! 7 din ki easy replacement policy hai. Kal morning 11:00 AM home pickup schedule kar diya hai.',
+      progress: 84,
+      progressCaption: 'SCHEDULING PICKUP AGENT...',
+      bubbles: [
+        { text: '"Mujhe return karna hai"', prompt: 'Mera order mujhe return karna hai' },
+        { text: '"Refund kab aayega?"', prompt: 'Mera return pickup ke baad refund kab credit hoga?' },
+        { text: '"Warranty kaise claim karein?"', prompt: 'Brand warranty claim karne ka kya process hai?' },
+        { text: '"Exchange available hai?"', prompt: 'Kya mujhe larger size exchange mil sakta hai?' }
+      ]
+    },
+
+    accessibility: {
+      id: 'accessibility',
+      title: 'Hands-Free Voice Mode',
+      caseId: '#HF-VOICE',
+      iconBoxClass: 'icon-teal',
+      iconSvg: `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="7" r="4"></circle>
+          <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+        </svg>
+      `,
+      step1: { title: 'Ambient noise filter active', detail: '60dB road traffic & kitchen noise suppressed' },
+      step2: { title: 'Bilingual sensitivity locked', detail: 'Debounce buffer: 2-3 words active' },
+      step3: { title: 'Full-duplex listening active', detail: 'LiveKit armed for instant barge-in interrupt' },
+      userQuote: 'Bhai thoda slow bolo aur cart open karo bina screen chuhe...',
+      agentSpeech: 'Zaroor, tempo adjust kar diya hai. Aapka shopping cart screen par open hai jisme 3 items hain. Bolte hi checkout start ho jayega.',
+      progress: 92,
+      progressCaption: 'LIVEKIT FULL-DUPLEX LISTENING ACTIVE...',
+      bubbles: [
+        { text: '"Bhai thoda slow bolo"', prompt: 'Bhai thoda slow bolo mujhe theek se sunai de' },
+        { text: '"Cart open kar do"', prompt: 'Hands-free mode me mera shopping cart open karo' },
+        { text: '"English mein switch karo"', prompt: 'Wait, can you explain this in English please?' },
+        { text: '"Cart padhke sunao"', prompt: 'Cart me jo items hain unke naam bolke batao' }
+      ]
+    },
+
+    productivity: {
+      id: 'productivity',
+      title: 'Voice Cart & Reminders',
+      caseId: '#PRD-1052',
+      iconBoxClass: 'icon-indigo',
+      iconSvg: `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="8" y1="9" x2="16" y2="9"></line>
+          <line x1="8" y1="13" x2="16" y2="13"></line>
+          <line x1="8" y1="17" x2="13" y2="17"></line>
+        </svg>
+      `,
+      step1: { title: 'Voice memo captured', detail: 'Diwali festive gifting dry fruits & sweets' },
+      step2: { title: 'Price comparison completed', detail: 'Found ₹240 lower price on Amazon Pantry' },
+      step3: { title: 'Setting midnight price alert', detail: 'Synchronizing reminder with Google Calendar' },
+      userQuote: 'Woh wala add to cart aur kal subah remind kar dena...',
+      agentSpeech: 'Done! Kaju katli aur California Almonds cart me save ho gaye hain. Kal subah 10:00 AM reminder trigger hoga.',
+      progress: 88,
+      progressCaption: 'SYNCING CLOUD REMINDERS...',
+      bubbles: [
+        { text: '"Woh wala add to cart"', prompt: 'Woh blue wala headset add to cart kar do' },
+        { text: '"Kal 10 AM remind karna"', prompt: 'Kal subah 10 baje shopping sale ka reminder set karo' },
+        { text: '"Price drop alert lagao"', prompt: 'Is item pe price drop hote hi alert bhejo' },
+        { text: '"Grocery checklist banao"', prompt: 'Weekly grocery shopping ki list bana do' }
+      ]
+    }
+  };
+
+  let currentConcept = 'track';
+  let isListening = false;
+  let audioIntensity = 1.0;
+
+  const waveCanvas = document.getElementById('waveCanvas');
+  const actionTitle = document.getElementById('actionTitle');
+  const actionId = document.getElementById('actionId');
+  const actionIconBox = document.getElementById('actionIconBox');
+  const step1Text = document.getElementById('step1Text');
+  const step1Detail = document.getElementById('step1Detail');
+  const step2Text = document.getElementById('step2Text');
+  const step2Detail = document.getElementById('step2Detail');
+  const step3Text = document.getElementById('step3Text');
+  const step3Detail = document.getElementById('step3Detail');
+  const agentSpeechText = document.getElementById('agentSpeechText');
+  const ribbonTranscript = document.getElementById('ribbonTranscript');
+  const actionProgressBar = document.getElementById('actionProgressBar');
+  const progressCaption = document.getElementById('progressCaption');
+  const voiceOrbBtn = document.getElementById('voiceOrbBtn');
+  const orbStatusLabel = document.getElementById('orbStatusLabel');
+  const latencyDisplay = document.getElementById('latencyDisplay');
+  const statusPill = document.getElementById('statusPill');
+  const archModal = document.getElementById('archModal');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+  const speechBubbles = [
+    document.querySelector('.bubble-top-left'),
+    document.querySelector('.bubble-top-right'),
+    document.querySelector('.bubble-bottom-left'),
+    document.querySelector('.bubble-bottom-right')
+  ];
+
+  const conceptCards = document.querySelectorAll('.concept-card');
+
+  // Web Audio Context & Gentle Ambient Chimes (Kept active as requested)
+  let audioCtx = null;
+  function getAudioContext() {
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (AudioContext) audioCtx = new AudioContext();
+    }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    return audioCtx;
+  }
+
+  function playChime(type = 'ping') {
+    try {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      const now = ctx.currentTime;
+      if (type === 'start') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.18);
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+        osc.start(now);
+        osc.stop(now + 0.35);
+      } else if (type === 'complete') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(587.33, now);
+        osc.frequency.setValueAtTime(880, now + 0.12);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+        osc.start(now);
+        osc.stop(now + 0.4);
+      } else {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(659.25, now);
+        gain.gain.setValueAtTime(0.1, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      }
+    } catch (e) {
+      console.warn('Web Audio chime error:', e);
+    }
+  }
+
+  // Switch Concept without any voice speaking
+  function switchConcept(conceptKey) {
+    if (!CONCEPTS_DATA[conceptKey]) return;
+    currentConcept = conceptKey;
+    const data = CONCEPTS_DATA[conceptKey];
+
+    conceptCards.forEach(card => {
+      if (card.dataset.concept === conceptKey) {
+        card.classList.add('active');
+      } else {
+        card.classList.remove('active');
+      }
+    });
+
+    playChime('ping');
+
+    const actionCard = document.getElementById('actionCard');
+    actionCard.style.transform = 'scale(0.98)';
+    actionCard.style.opacity = '0.7';
+
+    setTimeout(() => {
+      actionTitle.textContent = data.title;
+      actionId.textContent = data.caseId;
+
+      actionIconBox.className = `subject-icon-box ${data.iconBoxClass}`;
+      actionIconBox.innerHTML = data.iconSvg;
+
+      step1Text.textContent = data.step1.title;
+      step1Detail.textContent = data.step1.detail;
+      step2Text.textContent = data.step2.title;
+      step2Detail.textContent = data.step2.detail;
+      step3Text.textContent = data.step3.title;
+      step3Detail.textContent = data.step3.detail;
+
+      agentSpeechText.textContent = `"${data.agentSpeech}"`;
+      ribbonTranscript.textContent = `"${data.userQuote}"`;
+
+      actionProgressBar.style.width = `${data.progress}%`;
+      progressCaption.textContent = data.progressCaption;
+
+      data.bubbles.forEach((bubbleData, index) => {
+        if (speechBubbles[index]) {
+          const textEl = speechBubbles[index].querySelector('.bubble-text');
+          if (textEl) textEl.textContent = bubbleData.text;
+          speechBubbles[index].dataset.concept = conceptKey;
+          speechBubbles[index].dataset.prompt = bubbleData.prompt;
+        }
+      });
+
+      actionCard.style.transform = 'scale(1)';
+      actionCard.style.opacity = '1';
+
+      const randomLatency = Math.floor(58 + Math.random() * 18);
+      latencyDisplay.textContent = `${randomLatency} ms`;
+    }, 180);
+  }
+
+  // Click on Concept Cards
+  conceptCards.forEach(card => {
+    card.addEventListener('click', () => switchConcept(card.dataset.concept));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        switchConcept(card.dataset.concept);
+      }
+    });
+  });
+
+  // Click on Speech Bubbles (Silent visual transition)
+  speechBubbles.forEach(bubble => {
+    bubble.addEventListener('click', () => {
+      playChime('start');
+      const text = bubble.querySelector('.bubble-text').textContent.replace(/"/g, '');
+      const concept = bubble.dataset.concept || currentConcept;
+
+      ribbonTranscript.textContent = `"${text}"`;
+      audioIntensity = 2.4;
+
+      bubble.style.transform = 'scale(1.15)';
+      setTimeout(() => bubble.style.transform = '', 300);
+
+      switchConcept(concept);
+    });
+  });
+
+  // Voice Orb Simulator (Pure visual and waveform feedback, no spoken voice)
+  function simulateMicAction() {
+    if (isListening) return;
+    isListening = true;
+    audioIntensity = 3.2;
+    voiceOrbBtn.classList.add('listening');
+    orbStatusLabel.textContent = 'LISTENING (HINGLISH)...';
+    orbStatusLabel.style.color = '#00e5ff';
+    playChime('start');
+
+    const phrases = [
+      "Mera order abhi tak nahi aaya, ORD98765 ka status batao",
+      "Bhai mujhe Delhi se Mumbai ka AC 2-tier ticket chahiye",
+      "Yeh smartwatch return karni hai, pickup slot arrange karo",
+      "Cart open karo aur kal 10 AM remind kar dena",
+      "Bhai thoda slow bolo aur cart me boAt headphone add karo"
+    ];
+    const pickedPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+    ribbonTranscript.textContent = `"${pickedPhrase}"`;
+
+    setTimeout(() => {
+      orbStatusLabel.textContent = 'THINKING (GPT-4o)...';
+      orbStatusLabel.style.color = '#ffb703';
+
+      setTimeout(() => {
+        isListening = false;
+        voiceOrbBtn.classList.remove('listening');
+        orbStatusLabel.textContent = 'TAP TO SPEAK';
+        orbStatusLabel.style.color = '#ffffff';
+        playChime('complete');
+      }, 700);
+    }, 1400);
+  }
+
+  voiceOrbBtn.addEventListener('click', () => {
+    simulateMicAction();
+  });
+
+  // Modal Handlers
+  statusPill.addEventListener('click', () => {
+    playChime('ping');
+    archModal.classList.add('open');
+  });
+
+  modalCloseBtn.addEventListener('click', () => archModal.classList.remove('open'));
+  archModal.addEventListener('click', (e) => {
+    if (e.target === archModal) archModal.classList.remove('open');
+  });
+
+  // Dynamic Flowing Waveform Canvas (Visual BGM effect)
+  const ctx = waveCanvas.getContext('2d');
+  let animationFrameId = null;
+  let wavePhase = 0;
+
+  function resizeCanvas() {
+    waveCanvas.width = window.innerWidth;
+    waveCanvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  function drawWaveform() {
+    ctx.clearRect(0, 0, waveCanvas.width, waveCanvas.height);
+    const width = waveCanvas.width;
+    const height = waveCanvas.height;
+    const centerY = height * 0.45;
+
+    const waves = [
+      {
+        frequency: 0.0055,
+        baseAmp: 38,
+        speed: 0.045,
+        colorStart: 'rgba(255, 42, 133, 0.85)',
+        colorMid: 'rgba(255, 123, 0, 0.75)',
+        colorEnd: 'rgba(157, 78, 221, 0.4)',
+        lineWidth: 3.2
+      },
+      {
+        frequency: 0.0035,
+        baseAmp: 55,
+        speed: -0.035,
+        colorStart: 'rgba(157, 78, 221, 0.75)',
+        colorMid: 'rgba(255, 42, 133, 0.65)',
+        colorEnd: 'rgba(0, 229, 255, 0.4)',
+        lineWidth: 2.5
+      },
+      {
+        frequency: 0.0075,
+        baseAmp: 25,
+        speed: 0.06,
+        colorStart: 'rgba(255, 183, 3, 0.65)',
+        colorMid: 'rgba(255, 42, 133, 0.55)',
+        colorEnd: 'rgba(255, 94, 98, 0.3)',
+        lineWidth: 1.8
+      }
+    ];
+
+    waves.forEach((w, index) => {
+      ctx.beginPath();
+      const currentAmp = w.baseAmp * audioIntensity;
+      const phaseOffset = wavePhase * w.speed + index * 1.5;
+
+      const gradient = ctx.createLinearGradient(0, centerY - currentAmp, width, centerY + currentAmp);
+      gradient.addColorStop(0, w.colorStart);
+      gradient.addColorStop(0.5, w.colorMid);
+      gradient.addColorStop(1, w.colorEnd);
+
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = w.lineWidth;
+      ctx.lineCap = 'round';
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = w.colorStart;
+
+      for (let x = 0; x <= width; x += 6) {
+        const distFromCenter = Math.abs(x - width * 0.5) / (width * 0.5);
+        const envelope = Math.max(0.2, 1 - Math.pow(distFromCenter, 1.8));
+
+        const y = centerY + Math.sin(x * w.frequency + phaseOffset) * currentAmp * envelope
+                          + Math.cos(x * w.frequency * 0.5 + phaseOffset * 0.8) * (currentAmp * 0.35) * envelope;
+
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    });
+
+    if (!isListening && audioIntensity > 1.0) {
+      audioIntensity -= 0.025;
+      if (audioIntensity < 1.0) audioIntensity = 1.0;
+    }
+
+    wavePhase += 1;
+    animationFrameId = requestAnimationFrame(drawWaveform);
+  }
+
+  drawWaveform();
+
+});
+  </script>
+</body>
+</html>
