@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Friday!! - Voice-Native Hinglish Shopping & Assistant</title>
+  <title>Friday! - Voice-Native Hinglish Assistant</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&family=Reenie+Beanie&family=Yellowtail&display=swap" rel="stylesheet">
   <style>
 /* ==========================================================================
-   FRIDAY!! VOICE ASSISTANT - DESIGN SYSTEM & EXACT BLUEPRINT STYLES
+   FRIDAY! VOICE ASSISTANT - DESIGN SYSTEM & EXACT BLUEPRINT STYLES
    ========================================================================== */
 
 :root {
@@ -105,7 +105,7 @@ html, body {
   background: radial-gradient(circle, rgba(255, 42, 133, 0.25) 0%, rgba(0,0,0,0) 70%);
 }
 
-/* Audio Waveform Canvas flowing across the screen */
+/* Dynamic Waveform & Celestial Particle Canvas Engine */
 #waveCanvas {
   position: fixed;
   top: 0;
@@ -114,7 +114,7 @@ html, body {
   height: 100vh;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.75;
+  opacity: 1;
 }
 
 /* App Container Layout */
@@ -204,11 +204,12 @@ html, body {
 }
 
 .logo-subtitle {
-  font-size: 8.5px;
+  font-size: 8px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.6px;
   color: #a0a6bd;
   margin-top: 2px;
+  text-transform: uppercase;
 }
 
 /* Center Navigation Tags */
@@ -320,8 +321,8 @@ html, body {
 /* Main Content Grid */
 .main-content {
   display: grid;
-  grid-template-columns: 310px 1fr 390px;
-  gap: 24px;
+  grid-template-columns: 300px 1fr 310px;
+  gap: 20px;
   align-items: center;
   flex: 1;
   padding: 24px 0 12px 0;
@@ -361,24 +362,12 @@ html, body {
   line-height: 1.6;
 }
 
-.sparkle-left {
-  font-size: 24px;
-  color: var(--neon-amber);
-  margin-top: 20px;
-  text-shadow: 0 0 12px var(--neon-amber);
-  animation: sparkleTwinkle 2.5s infinite ease-in-out;
-}
-@keyframes sparkleTwinkle {
-  0%, 100% { opacity: 0.6; transform: scale(0.9) rotate(0deg); }
-  50% { opacity: 1; transform: scale(1.15) rotate(15deg); }
-}
-
 /* 3D Stylized Neon Shopping Bags Scene */
 .shopping-scene {
   position: relative;
   width: 220px;
   height: 190px;
-  margin: 20px 0 10px 0;
+  margin: 24px 0 10px 0;
 }
 .bags-container {
   position: relative;
@@ -472,89 +461,47 @@ html, body {
 }
 
 .center-header {
-  margin-bottom: 20px;
+  margin-bottom: 28px;
+  transform: translateY(-48px);
 }
 
 .center-brand {
   font-family: var(--font-script);
-  font-size: 52px;
-  line-height: 1;
+  font-size: 72px;
+  line-height: 0.95;
   background: linear-gradient(135deg, #ff3377 20%, #ff8c42 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 18px rgba(255, 60, 110, 0.55));
-}
-.brand-sparkle {
-  font-size: 26px;
-  color: #ffb703;
-  -webkit-text-fill-color: #ffb703;
+  filter: drop-shadow(0 0 24px rgba(255, 60, 110, 0.65));
 }
 
 .center-subtitle {
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 3.8px;
+  letter-spacing: 4px;
   color: #8c93a8;
-  margin-top: 4px;
+  margin-top: 5px;
 }
 
 /* Voice Stage */
 .voice-stage {
   position: relative;
   width: 440px;
-  height: 300px;
+  height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Floating Speech Bubbles */
-.speech-bubble {
-  position: absolute;
-  padding: 11px 18px;
-  background: rgba(22, 20, 36, 0.85);
-  border: 1px solid rgba(255, 120, 200, 0.22);
-  border-radius: var(--radius-full);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 14px rgba(255, 60, 140, 0.12);
-  cursor: pointer;
-  z-index: 10;
-  transition: all var(--transition-fast);
-  animation: bubbleFloat 4s ease-in-out infinite;
-}
-.speech-bubble:hover {
-  transform: scale(1.06) translateY(-4px) !important;
-  border-color: rgba(255, 120, 200, 0.6);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 60, 140, 0.35);
-  background: rgba(35, 28, 55, 0.95);
-}
-
-.bubble-text {
-  font-size: 12.5px;
-  font-weight: 500;
-  color: #e4e7f2;
-  white-space: nowrap;
-}
-
-.bubble-top-left { top: 25px; left: 0px; animation-delay: 0s; }
-.bubble-top-right { top: 30px; right: 0px; animation-delay: 1s; }
-.bubble-bottom-left { bottom: 45px; left: 10px; animation-delay: 2s; }
-.bubble-bottom-right { bottom: 40px; right: 10px; animation-delay: 1.5s; }
-
-@keyframes bubbleFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
 /* Central Glowing Neon Microphone Orb */
 .orb-outer-glow {
   position: absolute;
-  width: 230px;
-  height: 230px;
+  width: 190px;
+  height: 190px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 50, 120, 0.35) 0%, rgba(255, 140, 0, 0.18) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 215, 65, 0.22) 0%, rgba(255, 130, 35, 0.18) 20%, rgba(240, 35, 65, 0.15) 45%, rgba(160, 15, 45, 0.04) 66%, transparent 75%);
   pointer-events: none;
-  filter: blur(20px);
+  filter: blur(16px);
   z-index: 2;
   transition: transform 0.3s ease;
 }
@@ -623,7 +570,7 @@ html, body {
   width: 154px;
   height: 154px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #201a2d 0%, #0d0e17 75%);
+  background: radial-gradient(circle at 50% 50%, rgba(255, 210, 60, 0.08) 0%, rgba(255, 50, 80, 0.05) 30%, #181324 60%, #0d0e17 85%);
   box-shadow: inset 0 4px 15px rgba(255, 255, 255, 0.1), inset 0 -6px 15px rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
@@ -631,7 +578,7 @@ html, body {
   transition: all var(--transition-fast);
 }
 .voice-orb-btn:hover .orb-core {
-  background: radial-gradient(circle at 35% 30%, #291e3b 0%, #121320 75%);
+  background: radial-gradient(circle at 50% 50%, rgba(255, 210, 60, 0.12) 0%, rgba(255, 50, 80, 0.08) 32%, #221832 60%, #10111a 85%);
 }
 
 .mic-svg {
@@ -703,27 +650,29 @@ html, body {
 /* Right Action Card */
 .hero-right {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
   height: 100%;
 }
 
 .action-card {
   width: 100%;
-  max-width: 380px;
-  background: var(--bg-card);
-  border: 1px solid var(--bg-card-border);
-  border-radius: var(--radius-lg);
-  padding: 24px 22px;
-  backdrop-filter: blur(24px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(120, 50, 180, 0.12);
+  max-width: 305px;
+  background: rgba(14, 18, 30, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(120, 50, 180, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 10px;
   position: relative;
   transition: all var(--transition-smooth);
 }
 .action-card:hover {
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.16);
 }
 
 .action-card-header {
@@ -761,16 +710,16 @@ html, body {
 .action-subject {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding-bottom: 6px;
+  gap: 12px;
+  padding-bottom: 2px;
 }
 .subject-icon-box {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   background: radial-gradient(circle at top left, #341a33, #150f1d);
   border: 1.5px solid rgba(255, 60, 140, 0.35);
-  box-shadow: 0 0 20px rgba(255, 42, 133, 0.25);
+  box-shadow: 0 0 14px rgba(255, 42, 133, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -778,23 +727,23 @@ html, body {
   transition: all var(--transition-smooth);
 }
 .subject-icon-box svg {
-  width: 26px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
 }
 
 .subject-meta {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 .subject-title {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.2px;
 }
 .subject-id {
-  font-size: 14.5px;
+  font-size: 12px;
   font-weight: 600;
   color: #7f889f;
   font-variant-numeric: tabular-nums;
@@ -804,18 +753,18 @@ html, body {
 .timeline-stepper {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  margin: 4px 0 6px 4px;
+  gap: 1px;
+  margin: 2px 0 2px 2px;
 }
 .step-item {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 10px;
   position: relative;
 }
 .step-bullet {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -823,21 +772,25 @@ html, body {
   flex-shrink: 0;
   margin-top: 1px;
 }
+.step-bullet svg {
+  width: 10px;
+  height: 10px;
+}
 .step-completed .step-bullet {
   background: var(--neon-green);
-  box-shadow: 0 0 12px rgba(0, 230, 118, 0.5);
+  box-shadow: 0 0 10px rgba(0, 230, 118, 0.4);
 }
 .bullet-pulsing {
-  border: 2px solid var(--neon-amber);
+  border: 1.5px solid var(--neon-amber);
   background: rgba(255, 183, 3, 0.15);
   position: relative;
 }
 .inner-pulse {
-  width: 8px;
-  height: 8px;
+  width: 6.5px;
+  height: 6.5px;
   background-color: var(--neon-amber);
   border-radius: 50%;
-  box-shadow: 0 0 8px var(--neon-amber);
+  box-shadow: 0 0 6px var(--neon-amber);
   animation: pulseDot 1.2s infinite ease-in-out;
 }
 @keyframes pulseDot {
@@ -851,12 +804,12 @@ html, body {
   gap: 1px;
 }
 .step-name {
-  font-size: 13.5px;
+  font-size: 12px;
   font-weight: 600;
   color: #e2e8f0;
 }
 .step-detail {
-  font-size: 11px;
+  font-size: 9.5px;
   color: #78819a;
 }
 .text-pulsing {
@@ -865,8 +818,8 @@ html, body {
 
 .step-line {
   width: 2px;
-  height: 24px;
-  margin-left: 10px;
+  height: 13px;
+  margin-left: 8px;
 }
 .line-completed {
   background: var(--neon-green);
@@ -876,30 +829,30 @@ html, body {
   background: linear-gradient(to bottom, var(--neon-green), var(--neon-amber));
 }
 
-/* Agent Dialogue Box (Clean, without Play Button) */
+/* Agent Dialogue Box (Without Play Button) */
 .agent-dialogue-box {
-  background: rgba(12, 14, 24, 0.7);
+  background: rgba(10, 13, 22, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius-md);
-  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
 }
 .dialogue-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 .agent-avatar {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: linear-gradient(135deg, #ff2a85, #ff7b00);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 800;
   color: #fff;
   flex-shrink: 0;
@@ -909,18 +862,18 @@ html, body {
   flex-direction: column;
 }
 .agent-name {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   color: #f1f5f9;
 }
 .agent-voice-tag {
-  font-size: 9px;
+  font-size: 8px;
   color: #8b93ac;
 }
 
 .dialogue-quote {
-  font-size: 12px;
-  line-height: 1.45;
+  font-size: 10.5px;
+  line-height: 1.35;
   color: #d1d6e8;
   font-style: italic;
 }
@@ -928,8 +881,8 @@ html, body {
 .card-progress-section {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 4px;
+  gap: 5px;
+  margin-top: 2px;
 }
 .progress-bar-track {
   width: 100%;
@@ -946,7 +899,7 @@ html, body {
   transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .progress-status-caption {
-  font-size: 9.5px;
+  font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 2.2px;
   color: #7b839a;
@@ -1054,12 +1007,12 @@ html, body {
   white-space: nowrap;
 }
 
-/* Bottom Footer */
+/* Bottom Footer (Cleaned) */
 .bottom-footer {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   align-items: center;
-  padding-top: 14px;
+  justify-content: center;
+  padding-top: 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
 .footer-center-tags {
@@ -1073,56 +1026,6 @@ html, body {
 }
 .separator {
   opacity: 0.35;
-}
-
-.footer-decor-right {
-  display: flex;
-  align-items: flex-end;
-  gap: 24px;
-}
-.india-gate-doodle {
-  opacity: 0.85;
-  transition: opacity var(--transition-fast);
-}
-.india-gate-doodle:hover {
-  opacity: 1;
-}
-
-.chalkboard-sign {
-  width: 96px;
-  height: 110px;
-  background: #15161c;
-  border: 3px solid #2f2720;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(0,0,0,0.9);
-  user-select: none;
-  padding: 4px;
-}
-.chalkboard-sign p {
-  font-family: var(--font-main);
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.2px;
-  color: #cfd3dc;
-  line-height: 1.25;
-}
-.chalk-heart {
-  font-size: 12px;
-  color: #ff5e9c;
-  margin-top: 3px;
-}
-.shopper-script {
-  display: flex;
-  flex-direction: column;
-  font-family: var(--font-hand);
-  font-size: 18px;
-  line-height: 1.1;
-  color: #ffd8a8;
-  transform: rotate(-4deg);
 }
 
 /* Modal */
@@ -1327,9 +1230,6 @@ html, body {
   .bottom-concepts-tray {
     grid-template-columns: repeat(3, 1fr);
   }
-  .footer-decor-right {
-    display: none;
-  }
 }
   </style>
 </head>
@@ -1364,15 +1264,15 @@ html, body {
             <span class="eq-bar bar-5"></span>
           </div>
           <div class="brand-text">
-            <h1 class="logo-title">Friday!!</h1>
-            <span class="logo-subtitle">SHOP. SPEAK. DONE.</span>
+            <h1 class="logo-title">Friday!</h1>
+            <span class="logo-subtitle">SPEAK AND YOUR WORK IS DONE.</span>
           </div>
         </div>
       </div>
 
       <div class="nav-center">
         <span class="tag-made-for">MADE FOR INDIA</span>
-        <span class="tag-real-conversations">REAL CONVERSATIONS. REAL SHOPPING.</span>
+        <span class="tag-real-conversations">REAL CONVERSATIONS. REAL POSSIBILITIES.</span>
       </div>
 
       <div class="nav-right">
@@ -1405,12 +1305,10 @@ html, body {
         <div class="hero-text-block">
           <h2 class="hero-title-brush">
             Voice assisted<br />
-            <span>Shopping site!</span>
+            <span>site!</span>
           </h2>
-          <p class="hero-tagline">JUST SAY IT..<br />WE'LL HANDLE THE REST.</p>
+          <p class="hero-tagline">JUST SAY IT.<br />WE’LL BE THERE FOR YOU.</p>
         </div>
-
-        <div class="sparkle sparkle-left">✦</div>
 
         <!-- 3D Neon Shopping Bags Scene -->
         <div class="shopping-scene">
@@ -1431,40 +1329,15 @@ html, body {
         </div>
       </section>
 
-      <!-- CENTER VOICE INTERACTIVE SPHERE & SPEECH BUBBLES -->
+      <!-- CENTER VOICE INTERACTIVE SPHERE -->
       <section class="hero-center">
         <div class="center-header">
-          <h2 class="center-brand">Friday!! <span class="brand-sparkle">✦</span></h2>
+          <h2 class="center-brand">Friday!</h2>
           <p class="center-subtitle">YOUR VOICE ASSISTANT</p>
         </div>
 
         <!-- Interactive Voice Orb Stage -->
         <div class="voice-stage">
-          
-          <!-- Speech Bubble 1: Top Left -->
-          <div class="speech-bubble bubble-top-left" data-concept="track" data-phrase="Mera order kaha hai?">
-            <span class="bubble-text">"Mera order kaha hai?"</span>
-            <div class="bubble-tail tail-br"></div>
-          </div>
-
-          <!-- Speech Bubble 2: Top Right -->
-          <div class="speech-bubble bubble-top-right" data-concept="productivity" data-phrase="Woh wala add to cart">
-            <span class="bubble-text">"Woh wala add to cart"</span>
-            <div class="bubble-tail tail-bl"></div>
-          </div>
-
-          <!-- Speech Bubble 3: Bottom Left -->
-          <div class="speech-bubble bubble-bottom-left" data-concept="travel" data-phrase="Cancel kar do">
-            <span class="bubble-text">"Cancel kar do"</span>
-            <div class="bubble-tail tail-tr"></div>
-          </div>
-
-          <!-- Speech Bubble 4: Bottom Right -->
-          <div class="speech-bubble bubble-bottom-right" data-concept="qa" data-phrase="Mujhe return karna hai">
-            <span class="bubble-text">"Mujhe return karna hai"</span>
-            <div class="bubble-tail tail-tl"></div>
-          </div>
-
           <!-- Central Glowing Neon Microphone Orb -->
           <div class="orb-outer-glow" id="orbHalo"></div>
           <div class="orb-radar-wave" id="radarWave1"></div>
@@ -1492,7 +1365,7 @@ html, body {
 
         <div class="voice-orb-label">
           <span class="tap-label" id="orbStatusLabel">TAP TO SPEAK</span>
-          <span class="sub-label">SHOPPING. IN HINGLISH. NATURALLY.</span>
+          <span class="sub-label">ASSISTANCE. IN HINGLISH. NATURALLY.</span>
         </div>
 
         <!-- Live Transcribed Voice Floating Ribbon -->
@@ -1540,7 +1413,7 @@ html, body {
               </div>
               <div class="step-content">
                 <span class="step-name" id="step1Text">Order found</span>
-                <span class="step-detail" id="step1Detail">Verified in BlueDart Hub</span>
+                <span class="step-detail" id="step1Detail">Verified in BlueDart Hub Delhi</span>
               </div>
             </div>
 
@@ -1555,7 +1428,7 @@ html, body {
               </div>
               <div class="step-content">
                 <span class="step-name" id="step2Text">Customer verified</span>
-                <span class="step-detail" id="step2Detail">OTP & Voiceprint matched</span>
+                <span class="step-detail" id="step2Detail">OTP & Voiceprint matched (+91 98*** 12345)</span>
               </div>
             </div>
 
@@ -1688,47 +1561,12 @@ html, body {
 
     </nav>
 
-    <!-- FOOTER SECTION & ARTWORK -->
+    <!-- BOTTOM FOOTER -->
     <footer class="bottom-footer">
       <div class="footer-center-tags">
         <span>VOICE FIRST</span>
         <span class="separator">|</span>
         <span>MADE FOR REAL PEOPLE</span>
-        <span class="separator">|</span>
-        <span>SHOP FREELY</span>
-      </div>
-
-      <div class="footer-decor-right">
-        <!-- India Gate Outline SVG -->
-        <div class="india-gate-doodle" title="Made for India">
-          <svg width="105" height="60" viewBox="0 0 140 80" fill="none" stroke="rgba(255, 180, 100, 0.45)" stroke-width="1.4">
-            <line x1="10" y1="75" x2="130" y2="75"/>
-            <line x1="15" y1="71" x2="125" y2="71"/>
-            <rect x="25" y="25" width="22" height="46"/>
-            <rect x="93" y="25" width="22" height="46"/>
-            <path d="M47 71 V 42 Q 70 20 93 42 V 71" />
-            <path d="M55 71 V 47 Q 70 32 85 47 V 71" stroke-dasharray="2 2" />
-            <rect x="20" y="16" width="100" height="9"/>
-            <rect x="28" y="10" width="84" height="6"/>
-            <rect x="42" y="4" width="56" height="6"/>
-            <circle cx="70" cy="2" r="2" fill="rgba(255, 180, 100, 0.6)"/>
-          </svg>
-        </div>
-
-        <!-- Chalkboard Sign -->
-        <div class="chalkboard-sign">
-          <p class="chalk-line-1">GOOD</p>
-          <p class="chalk-line-2">THINGS</p>
-          <p class="chalk-line-3">SOUND</p>
-          <p class="chalk-line-4">BETTER</p>
-          <p class="chalk-line-5">TOGETHER</p>
-          <span class="chalk-heart">♡</span>
-        </div>
-
-        <div class="shopper-script">
-          <span>For Every</span>
-          <span>Indian Shopper ♡</span>
-        </div>
       </div>
     </footer>
 
@@ -1811,7 +1649,7 @@ html, body {
 
   <script>
 /**
- * FRIDAY!! - VOICE-NATIVE HINGLISH ASSISTANT
+ * FRIDAY! - VOICE-NATIVE HINGLISH ASSISTANT
  * Core Interactive Controller, Waveform Engine, and Concept State Manager
  */
 
@@ -1836,13 +1674,7 @@ document.addEventListener('DOMContentLoaded', () => {
       userQuote: 'ORD98765 ka live tracking batao bhai...',
       agentSpeech: 'Samajh gaya! Aapka order abhi out for delivery hai. By 4:30 PM deliver ho jayega. Anything else?',
       progress: 78,
-      progressCaption: 'HANG TIGHT, ALMOST THERE...',
-      bubbles: [
-        { text: '"Mera order kaha hai?"', prompt: 'Mera order abhi tak nahi aaya' },
-        { text: '"Delivery boy number do"', prompt: 'Delivery boy ka contact number bata do' },
-        { text: '"Address change karna hai"', prompt: 'Kya main apna delivery address change kar sakta hoon?' },
-        { text: '"Order cancel kar do"', prompt: 'Mera recent order cancel kar do' }
-      ]
+      progressCaption: 'HANG TIGHT, ALMOST THERE...'
     },
 
     travel: {
@@ -1867,13 +1699,7 @@ document.addEventListener('DOMContentLoaded', () => {
       userQuote: 'Bhai, mujhe Delhi se Mumbai ka ticket chahiye, AC 2-tier me...',
       agentSpeech: 'Ticket allocate ho gaya hai! Rajdhani Express me Coach A1, Berth 34 confirm hai. PNR ABC1234 generate ho gaya.',
       progress: 68,
-      progressCaption: 'CONNECTING TO RAILWAY SERVERS...',
-      bubbles: [
-        { text: '"Delhi se Mumbai train"', prompt: 'Bhai, mujhe Delhi se Mumbai ka ticket chahiye' },
-        { text: '"AC 2-tier confirm karo"', prompt: 'AC 2-tier berth check karke book kar do' },
-        { text: '"PNR status kya hai?"', prompt: 'Mera PNR ABC1234 ka current status batao' },
-        { text: '"Tatkal quota check karo"', prompt: 'Tatkal quota me seats available hain kya?' }
-      ]
+      progressCaption: 'CONNECTING TO RAILWAY SERVERS...'
     },
 
     qa: {
@@ -1896,13 +1722,7 @@ document.addEventListener('DOMContentLoaded', () => {
       userQuote: 'Yeh watch return ho sakti hai kya? Fit nahi baith raha...',
       agentSpeech: 'Haanji bilkul! 7 din ki easy replacement policy hai. Kal morning 11:00 AM home pickup schedule kar diya hai.',
       progress: 84,
-      progressCaption: 'SCHEDULING PICKUP AGENT...',
-      bubbles: [
-        { text: '"Mujhe return karna hai"', prompt: 'Mera order mujhe return karna hai' },
-        { text: '"Refund kab aayega?"', prompt: 'Mera return pickup ke baad refund kab credit hoga?' },
-        { text: '"Warranty kaise claim karein?"', prompt: 'Brand warranty claim karne ka kya process hai?' },
-        { text: '"Exchange available hai?"', prompt: 'Kya mujhe larger size exchange mil sakta hai?' }
-      ]
+      progressCaption: 'SCHEDULING PICKUP AGENT...'
     },
 
     accessibility: {
@@ -1922,13 +1742,7 @@ document.addEventListener('DOMContentLoaded', () => {
       userQuote: 'Bhai thoda slow bolo aur cart open karo bina screen chuhe...',
       agentSpeech: 'Zaroor, tempo adjust kar diya hai. Aapka shopping cart screen par open hai jisme 3 items hain. Bolte hi checkout start ho jayega.',
       progress: 92,
-      progressCaption: 'LIVEKIT FULL-DUPLEX LISTENING ACTIVE...',
-      bubbles: [
-        { text: '"Bhai thoda slow bolo"', prompt: 'Bhai thoda slow bolo mujhe theek se sunai de' },
-        { text: '"Cart open kar do"', prompt: 'Hands-free mode me mera shopping cart open karo' },
-        { text: '"English mein switch karo"', prompt: 'Wait, can you explain this in English please?' },
-        { text: '"Cart padhke sunao"', prompt: 'Cart me jo items hain unke naam bolke batao' }
-      ]
+      progressCaption: 'LIVEKIT FULL-DUPLEX LISTENING ACTIVE...'
     },
 
     productivity: {
@@ -1950,13 +1764,7 @@ document.addEventListener('DOMContentLoaded', () => {
       userQuote: 'Woh wala add to cart aur kal subah remind kar dena...',
       agentSpeech: 'Done! Kaju katli aur California Almonds cart me save ho gaye hain. Kal subah 10:00 AM reminder trigger hoga.',
       progress: 88,
-      progressCaption: 'SYNCING CLOUD REMINDERS...',
-      bubbles: [
-        { text: '"Woh wala add to cart"', prompt: 'Woh blue wala headset add to cart kar do' },
-        { text: '"Kal 10 AM remind karna"', prompt: 'Kal subah 10 baje shopping sale ka reminder set karo' },
-        { text: '"Price drop alert lagao"', prompt: 'Is item pe price drop hote hi alert bhejo' },
-        { text: '"Grocery checklist banao"', prompt: 'Weekly grocery shopping ki list bana do' }
-      ]
+      progressCaption: 'SYNCING CLOUD REMINDERS...'
     }
   };
 
@@ -1985,16 +1793,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const archModal = document.getElementById('archModal');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
 
-  const speechBubbles = [
-    document.querySelector('.bubble-top-left'),
-    document.querySelector('.bubble-top-right'),
-    document.querySelector('.bubble-bottom-left'),
-    document.querySelector('.bubble-bottom-right')
-  ];
-
   const conceptCards = document.querySelectorAll('.concept-card');
 
-  // Web Audio Context & Gentle Ambient Chimes (Kept active as requested)
+  // Web Audio Context & Gentle Ambient Chimes
   let audioCtx = null;
   function getAudioContext() {
     if (!audioCtx) {
@@ -2086,15 +1887,6 @@ document.addEventListener('DOMContentLoaded', () => {
       actionProgressBar.style.width = `${data.progress}%`;
       progressCaption.textContent = data.progressCaption;
 
-      data.bubbles.forEach((bubbleData, index) => {
-        if (speechBubbles[index]) {
-          const textEl = speechBubbles[index].querySelector('.bubble-text');
-          if (textEl) textEl.textContent = bubbleData.text;
-          speechBubbles[index].dataset.concept = conceptKey;
-          speechBubbles[index].dataset.prompt = bubbleData.prompt;
-        }
-      });
-
       actionCard.style.transform = 'scale(1)';
       actionCard.style.opacity = '1';
 
@@ -2114,23 +1906,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Click on Speech Bubbles (Silent visual transition)
-  speechBubbles.forEach(bubble => {
-    bubble.addEventListener('click', () => {
-      playChime('start');
-      const text = bubble.querySelector('.bubble-text').textContent.replace(/"/g, '');
-      const concept = bubble.dataset.concept || currentConcept;
-
-      ribbonTranscript.textContent = `"${text}"`;
-      audioIntensity = 2.4;
-
-      bubble.style.transform = 'scale(1.15)';
-      setTimeout(() => bubble.style.transform = '', 300);
-
-      switchConcept(concept);
-    });
-  });
-
   // Voice Orb Simulator (Pure visual and waveform feedback, no spoken voice)
   function simulateMicAction() {
     if (isListening) return;
@@ -2138,7 +1913,7 @@ document.addEventListener('DOMContentLoaded', () => {
     audioIntensity = 3.2;
     voiceOrbBtn.classList.add('listening');
     orbStatusLabel.textContent = 'LISTENING (HINGLISH)...';
-    orbStatusLabel.style.color = '#00e5ff';
+    orbStatusLabel.style.color = '#ff5e88';
     playChime('start');
 
     const phrases = [
@@ -2180,57 +1955,163 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === archModal) archModal.classList.remove('open');
   });
 
-  // Dynamic Flowing Waveform Canvas (Visual BGM effect)
+  // =========================================================================
+  // DYNAMIC CANVAS ENGINE: ACOUSTIC PARTICLES, HARMONIC WAVES & MIC RED GLOW
+  // =========================================================================
   const ctx = waveCanvas.getContext('2d');
   let animationFrameId = null;
   let wavePhase = 0;
+  let width = 0;
+  let height = 0;
+  let dpr = window.devicePixelRatio || 1;
 
   function resizeCanvas() {
-    waveCanvas.width = window.innerWidth;
-    waveCanvas.height = window.innerHeight;
+    width = window.innerWidth;
+    height = window.innerHeight;
+    waveCanvas.width = width * dpr;
+    waveCanvas.height = height * dpr;
+    waveCanvas.style.width = width + 'px';
+    waveCanvas.style.height = height + 'px';
+    ctx.scale(dpr, dpr);
   }
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
 
-  function drawWaveform() {
-    ctx.clearRect(0, 0, waveCanvas.width, waveCanvas.height);
-    const width = waveCanvas.width;
-    const height = waveCanvas.height;
-    const centerY = height * 0.45;
+  // Mouse tracking for visual particle deflection (Silent - no sound on movement)
+  let mouse = { x: -9999, y: -9999, speed: 0 };
+  let cursorSparks = [];
 
+  window.addEventListener('mousemove', (e) => {
+    const dx = e.clientX - mouse.x;
+    const dy = e.clientY - mouse.y;
+    mouse.speed = Math.sqrt(dx * dx + dy * dy);
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+
+    // Visual micro-sparks on cursor motion
+    if (mouse.speed > 8 && cursorSparks.length < 25) {
+      cursorSparks.push({
+        x: mouse.x + (Math.random() - 0.5) * 6,
+        y: mouse.y + (Math.random() - 0.5) * 6,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: (Math.random() - 0.5) * 1.5 - 0.4,
+        alpha: 0.65,
+        size: Math.random() * 2.0 + 1.0,
+        color: Math.random() > 0.5 ? '#ffb703' : '#ff2a55'
+      });
+    }
+  });
+
+  // Calculate mic orb center coordinates
+  function getMicCenter() {
+    const rect = voiceOrbBtn.getBoundingClientRect();
+    return {
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2
+    };
+  }
+
+  // Particle System (Same quantity as before: 300 starry dots)
+  const PARTICLE_COUNT = 300;
+  const particles = [];
+  const dotPalettes = ['#ff2a55', '#ff5e62', '#ffb703', '#ff7b00', '#ffe9d6', '#ff3366'];
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      radius: Math.random() * 2.0 + 0.9,
+      baseAlpha: Math.random() * 0.45 + 0.22,
+      alpha: 0.3,
+      // Polarity for mic noise: +1 = repelled outward, -1 = drawn inward
+      polarity: i % 2 === 0 ? 1 : -1,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.02 + 0.01,
+      orbitR: Math.random() * 16 + 6,
+      colorMode: dotPalettes[i % dotPalettes.length]
+    });
+  }
+
+  function drawEngine() {
+    ctx.clearRect(0, 0, width, height);
+    const mic = getMicCenter();
+    const voiceAmpFactor = Math.max(0, audioIntensity - 1.0); // 0 in idle, up to 2.2 when speaking
+
+    // 1. VERY SMALL AMOUNT OF RED & YELLOW AT THE MIC (Subtle, concentrated core glow)
+    const micGlowRadius = 135 + voiceAmpFactor * 25;
+    const micGlow = ctx.createRadialGradient(mic.x, mic.y, 4, mic.x, mic.y, micGlowRadius);
+    const glowAlpha = 0.25 + voiceAmpFactor * 0.12;
+    micGlow.addColorStop(0, `rgba(255, 215, 65, ${glowAlpha * 0.85})`);      // Small warm yellow core
+    micGlow.addColorStop(0.18, `rgba(255, 135, 30, ${glowAlpha * 0.70})`);   // Golden amber transition
+    micGlow.addColorStop(0.42, `rgba(240, 35, 65, ${glowAlpha * 0.55})`);    // Crimson red
+    micGlow.addColorStop(0.72, `rgba(140, 10, 30, ${glowAlpha * 0.16})`);    // Deep ruby red
+    micGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+    ctx.fillStyle = micGlow;
+    ctx.beginPath();
+    ctx.arc(mic.x, mic.y, micGlowRadius, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 2. FLOWING HARMONIC AUDIO WAVE RIBBONS (Harmonic palette with Cyan-Blue & Golden-Yellow waves)
+    const centerY = height * 0.47;
     const waves = [
       {
+        // 1. Coral / Crimson Wave
         frequency: 0.0055,
-        baseAmp: 38,
+        baseAmp: 34,
         speed: 0.045,
-        colorStart: 'rgba(255, 42, 133, 0.85)',
-        colorMid: 'rgba(255, 123, 0, 0.75)',
-        colorEnd: 'rgba(157, 78, 221, 0.4)',
-        lineWidth: 3.2
+        colorStart: 'rgba(255, 42, 100, 0.82)',
+        colorMid: 'rgba(255, 120, 50, 0.72)',
+        colorEnd: 'rgba(180, 30, 80, 0.3)',
+        lineWidth: 2.8
       },
       {
+        // 2. Electric Cyan-Blue Wave
+        frequency: 0.0042,
+        baseAmp: 42,
+        speed: -0.042,
+        colorStart: 'rgba(0, 210, 255, 0.85)',
+        colorMid: 'rgba(30, 140, 255, 0.72)',
+        colorEnd: 'rgba(70, 70, 220, 0.28)',
+        lineWidth: 2.4
+      },
+      {
+        // 3. Vibrant Luminous Yellow Wave
+        frequency: 0.0062,
+        baseAmp: 30,
+        speed: 0.052,
+        colorStart: 'rgba(255, 225, 45, 0.88)',
+        colorMid: 'rgba(255, 190, 30, 0.75)',
+        colorEnd: 'rgba(255, 140, 20, 0.28)',
+        lineWidth: 2.2
+      },
+      {
+        // 4. Magenta / Rose Wave
         frequency: 0.0035,
-        baseAmp: 55,
+        baseAmp: 48,
         speed: -0.035,
-        colorStart: 'rgba(157, 78, 221, 0.75)',
-        colorMid: 'rgba(255, 42, 133, 0.65)',
-        colorEnd: 'rgba(0, 229, 255, 0.4)',
-        lineWidth: 2.5
+        colorStart: 'rgba(255, 60, 120, 0.72)',
+        colorMid: 'rgba(255, 140, 50, 0.62)',
+        colorEnd: 'rgba(160, 20, 70, 0.25)',
+        lineWidth: 2.0
       },
       {
+        // 5. Warm Orange Wave
         frequency: 0.0075,
-        baseAmp: 25,
+        baseAmp: 22,
         speed: 0.06,
-        colorStart: 'rgba(255, 183, 3, 0.65)',
-        colorMid: 'rgba(255, 42, 133, 0.55)',
-        colorEnd: 'rgba(255, 94, 98, 0.3)',
-        lineWidth: 1.8
+        colorStart: 'rgba(255, 160, 60, 0.62)',
+        colorMid: 'rgba(255, 50, 90, 0.52)',
+        colorEnd: 'rgba(210, 30, 65, 0.22)',
+        lineWidth: 1.6
       }
     ];
 
     waves.forEach((w, index) => {
       ctx.beginPath();
-      const currentAmp = w.baseAmp * audioIntensity;
+      const currentAmp = w.baseAmp * (1 + voiceAmpFactor * 0.65);
       const phaseOffset = wavePhase * w.speed + index * 1.5;
 
       const gradient = ctx.createLinearGradient(0, centerY - currentAmp, width, centerY + currentAmp);
@@ -2241,15 +2122,23 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.strokeStyle = gradient;
       ctx.lineWidth = w.lineWidth;
       ctx.lineCap = 'round';
-      ctx.shadowBlur = 15;
+      ctx.shadowBlur = 12;
       ctx.shadowColor = w.colorStart;
 
       for (let x = 0; x <= width; x += 6) {
         const distFromCenter = Math.abs(x - width * 0.5) / (width * 0.5);
-        const envelope = Math.max(0.2, 1 - Math.pow(distFromCenter, 1.8));
+        const envelope = Math.max(0.18, 1 - Math.pow(distFromCenter, 1.8));
+
+        // High-frequency acoustic noise near mic region when speaking
+        let noiseJitter = 0;
+        if (voiceAmpFactor > 0.1 && Math.abs(x - mic.x) < 220) {
+          const proximity = 1 - (Math.abs(x - mic.x) / 220);
+          noiseJitter = Math.sin(x * 0.12 + wavePhase * 0.3) * Math.cos(wavePhase * 0.35) * (voiceAmpFactor * 10 * proximity);
+        }
 
         const y = centerY + Math.sin(x * w.frequency + phaseOffset) * currentAmp * envelope
-                          + Math.cos(x * w.frequency * 0.5 + phaseOffset * 0.8) * (currentAmp * 0.35) * envelope;
+                          + Math.cos(x * w.frequency * 0.5 + phaseOffset * 0.8) * (currentAmp * 0.35) * envelope
+                          + noiseJitter;
 
         if (x === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
@@ -2258,16 +2147,107 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.shadowBlur = 0;
     });
 
+    // 3. ACOUSTIC PROPAGATION NOISE & 300 PARTICLES
+    const baseRadius = 80;
+    const maxPropagationRadius = 260;
+    const currentPropRadius = baseRadius + maxPropagationRadius * Math.pow(voiceAmpFactor / 2.2, 1.2);
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      // Idle normal animation: harmonic drifting
+      p.phase += p.speed;
+      let targetX = p.x + p.vx + Math.cos(p.phase) * (p.orbitR * 0.04);
+      let targetY = p.y + p.vy + Math.sin(p.phase) * (p.orbitR * 0.04);
+
+      // Distance to mic center
+      const dx = targetX - mic.x;
+      const dy = targetY - mic.y;
+      const distToMic = Math.sqrt(dx * dx + dy * dy);
+
+      p.alpha = p.baseAlpha;
+
+      // When speaking: noise propagation activates near the mic region
+      if (voiceAmpFactor > 0.05 && distToMic < currentPropRadius && distToMic > 15) {
+        const normCloseness = 1 - (distToMic / currentPropRadius);
+        const noiseIntensity = Math.pow(normCloseness, 1.3) * (voiceAmpFactor / 2.2);
+
+        // Acoustic turbulence noise
+        const angle = Math.atan2(dy, dx);
+        const noiseAngle = angle + Math.sin(angle * 5 + wavePhase * 0.2 + i) * 0.45;
+        const noiseTurbulence = Math.sin(wavePhase * 0.25 + i * 2) * Math.cos(wavePhase * 0.3);
+
+        // Particles go away or come inwards
+        const radialPush = p.polarity * (noiseIntensity * 6.5 + noiseTurbulence * 2.0);
+        targetX += Math.cos(noiseAngle) * radialPush;
+        targetY += Math.sin(noiseAngle) * radialPush;
+
+        p.alpha = Math.min(1.0, p.baseAlpha + noiseIntensity * 0.6);
+      }
+
+      // Cursor interaction: gently deflect particles near mouse
+      const mdx = targetX - mouse.x;
+      const mdy = targetY - mouse.y;
+      const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+      if (mDist < 85 && mDist > 0) {
+        const mForce = (1 - mDist / 85) * 3.5;
+        targetX += (mdx / mDist) * mForce;
+        targetY += (mdy / mDist) * mForce;
+        p.alpha = Math.min(1.0, p.alpha + 0.35);
+      }
+
+      // Wrap around edges
+      if (targetX < 0) targetX = width;
+      if (targetX > width) targetX = 0;
+      if (targetY < 0) targetY = height;
+      if (targetY > height) targetY = 0;
+
+      p.x = targetX;
+      p.y = targetY;
+
+      // Draw particle
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.colorMode;
+      ctx.globalAlpha = p.alpha;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = p.colorMode;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1.0;
+    }
+
+    // 4. CURSOR MICRO-SPARKS
+    for (let sIdx = cursorSparks.length - 1; sIdx >= 0; sIdx--) {
+      const sp = cursorSparks[sIdx];
+      sp.x += sp.vx;
+      sp.y += sp.vy;
+      sp.alpha *= 0.92;
+      sp.size *= 0.95;
+
+      ctx.beginPath();
+      ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+      ctx.fillStyle = sp.color;
+      ctx.globalAlpha = sp.alpha;
+      ctx.shadowBlur = 5;
+      ctx.shadowColor = sp.color;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1.0;
+
+      if (sp.alpha < 0.05) cursorSparks.splice(sIdx, 1);
+    }
+
     if (!isListening && audioIntensity > 1.0) {
       audioIntensity -= 0.025;
       if (audioIntensity < 1.0) audioIntensity = 1.0;
     }
 
     wavePhase += 1;
-    animationFrameId = requestAnimationFrame(drawWaveform);
+    animationFrameId = requestAnimationFrame(drawEngine);
   }
 
-  drawWaveform();
+  drawEngine();
 
 });
   </script>
